@@ -40,8 +40,8 @@ export class UsuarioService {
     this.decodificaJWT()
   }
 
-  logout(token: string) {
-    this.tokenService.excluiToken(token)
+  logout() {
+    this.tokenService.excluiToken()
     this.usuarioSubject.next({})
   }
 
