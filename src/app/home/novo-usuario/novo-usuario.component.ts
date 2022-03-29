@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { minusculoValidator } from './minusculo.validator';
 import { NovoUsuario } from './novo-usuario';
 import { NovoUsuarioService } from './novo-usuario.service';
 
@@ -15,10 +16,16 @@ export class NovoUsuarioComponent implements OnInit {
 
   ngOnInit(): void {      //forms reativos são criados no onInit, somente depois de injetar todos os serviços e a classe ser construida
     this.novoUsuarioForm = this.formBuilder.group({
-      email: [''],
-      fullName: [''],
-      userName: [''],
-      password: ['']
+      email: ['', [
+        Validators.required, Validators.email
+      ]],
+      fullName: ['', [
+        Validators.required, Validators.minLength(4)
+      ]],
+      userName: ['', [
+        minusculoValidator
+      ]],
+      password: [''],
     })
   }
 

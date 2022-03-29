@@ -3,15 +3,30 @@
 <form class="form mt-4" [formGroup]="novoUsuarioForm" (submit)="cadastrar()">
     <div class="form-group">
         <input type="text" placeholder="E-mail" class="form-control" formControlName="email" />
+        <app-mensagem
+            *ngIf="novoUsuarioForm.get('email')?.errors?.required && novoUsuarioForm.get('email')?.touched"
+            mensagem="Email Obrigatório">
+        </app-mensagem>
+        <app-mensagem
+            *ngIf="novoUsuarioForm.get('email')?.errors?.email && novoUsuarioForm.get('email')?.touched"
+            mensagem="Email não está no formato certo">
+        </app-mensagem>
     </div>
 
     <div class="form-group">
         <input type="text" placeholder="Nome completo" class="form-control"
             formControlName="fullName" />
+        <app-mensagem
+            *ngIf="novoUsuarioForm.get('fullName')?.errors && novoUsuarioForm.get('fullName')?.touched"
+            mensagem="Nome incorreto"></app-mensagem>
     </div>
 
     <div class="form-group">
         <input type="text" placeholder="Usuario" class="form-control" formControlName="userName" />
+        <app-mensagem
+            *ngIf="novoUsuarioForm.get('userName')?.errors?.minusculo && novoUsuarioForm.get('userName')?.touched"
+            mensagem="Usuário deve conter apenas letras minúsculas">
+        </app-mensagem>
     </div>
 
     <div class="form-group">
