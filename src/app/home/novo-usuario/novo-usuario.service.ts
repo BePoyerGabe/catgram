@@ -12,4 +12,8 @@ export class NovoUsuarioService {
   cadastraNovoUsuario(usuario: NovoUsuario) {
     return this.httoClient.post('http://localhost:3000/user/signup', usuario)
   }
+
+  usuarioJaExiste(nome: string) {
+    return this.httoClient.get(`http://localhost:3000/user/exists/${nome}`)
+  }
 }
